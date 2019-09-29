@@ -1,0 +1,75 @@
+To				,Location
+rst_n_i			,PIN_31
+clk_i           ,PIN_88
+led[0]          ,PIN_32
+led[1]          ,PIN_33
+led[2]          ,PIN_34
+ft_clk_i        ,PIN_91
+ft_rxf_i        ,PIN_113
+ft_txe_i        ,PIN_112
+ft_rd_o         ,PIN_111
+ft_wr_o         ,PIN_110
+ft_oe_o         ,PIN_104
+ft_siwu_o       ,PIN_106
+ft_adbus_o[0]   ,PIN_126
+ft_adbus_o[1]   ,PIN_125
+ft_adbus_o[2]   ,PIN_124
+ft_adbus_o[3]   ,PIN_121
+ft_adbus_o[4]   ,PIN_120
+ft_adbus_o[5]   ,PIN_119
+ft_adbus_o[6]   ,PIN_115
+ft_adbus_o[7]   ,PIN_114
+ft_usrst        ,PIN_101
+ft_pwrsav       ,PIN_103
+ad_otr_i        ,PIN_127
+ad_db_i[0]      ,PIN_128
+ad_db_i[1]      ,PIN_129
+ad_db_i[2]      ,PIN_132
+ad_db_i[3]      ,PIN_133
+ad_db_i[4]      ,PIN_135
+ad_db_i[5]      ,PIN_136
+ad_db_i[6]      ,PIN_137
+ad_db_i[7]      ,PIN_138
+ad_db_i[8]      ,PIN_141
+ad_db_i[9]      ,PIN_142
+ad_db_i[10]     ,PIN_143
+ad_db_i[11]     ,PIN_144
+ad_clk_o        ,PIN_1
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

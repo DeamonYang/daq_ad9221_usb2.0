@@ -1,0 +1,10 @@
+PLL_Name	pll_adc:pll_adc_u0|altpll:altpll_component|pll_adc_altpll:auto_generated|pll1
+PLLJITTER	30
+PLLSPEmax	84
+PLLSPEmin	-53
+
+PLL_Name	usb_data_pll:pll_u0|altpll:altpll_component|usb_data_pll_altpll:auto_generated|pll1
+PLLJITTER	30
+PLLSPEmax	84
+PLLSPEmin	-53
+

@@ -37,37 +37,26 @@ module daq_sys(
 	logic 			fifo_empty;
 	
 	logic	[11:0]	fifo_test_data;
+	logic	[7:0]	fifo_data;
 	
 	
-
-	assign ft_siwu_o = 1'b1;
-	//assign led[2] = ft_txe_i;
-	assign ft_usrst = 1'b1;
-	assign ft_pwrsav = 1'b1;
+	ft232h_send_data ft232h_send_data_inst_u0(
+		.rst_n_i		(rst_n_i		),
+		.clk_i			(clk_i			),	
+		.ft_shift_clk	(ft_shift_clk	),//60MHz
+		.ft_rxf_i		(ft_rxf_i		),//When high, do not read data from the FIFO
+		.ft_txe_i		(ft_txe_i		),//When high, do not write data into the FIFO
+		.ft_adbus_o		(ft_adbus_o		),
+		.ft_rd_o		(ft_rd_o		),
+		.ft_wr_o		(ft_wr_o		),
+		.ft_usrst		(ft_usrst		),
+		.ft_pwrsav		(ft_pwrsav		),
+		.ft_oe_o		(ft_oe_o		),
+		.ft_siwu_o		(ft_siwu_o		),
+		.fifo_data		(fifo_data		),
+		.fifo_empty		(fifo_empty		) 
+	);
 	
-	
-	always_ff@(posedge adc_clk or negedge rst_n_i)
-	if(!rst_n_i)
-		led[2] <= 1'b0;
-	else if(fifo_full)
-		led[2] <= ~led[2];
-		
-	
-	
-	always_ff@(posedge ft_shift_clk or negedge rst_n_i)
-	if(!rst_n_i)
-		ft_wr_o <= 1'b1;
-	else if((!ft_txe_i) & (!fifo_empty))
-		ft_wr_o <= 1'b0;
-	else
-		ft_wr_o <= 1'b1;
-	
-	
-	always_ff@(posedge adc_clk or negedge rst_n_i)
-	if(!rst_n_i)
-		fifo_test_data <= 'd0;
-	else if(~fifo_full)
-		fifo_test_data <= fifo_test_data + 1'b1;
 	
 	
 	async_fifo	async_fifo_inst (
@@ -77,7 +66,7 @@ module daq_sys(
 		.rdreq 		( (~ft_txe_i)&(~fifo_empty)),
 		.wrclk 		( adc_clk 		),
 		.wrreq 		( ~fifo_full	),
-		.q 			( ft_adbus_o 	),
+		.q 			( fifo_data 	),
 		.rdempty 	( fifo_empty 	),
 		.wrfull 	( fifo_full 	)
 		);
@@ -103,6 +92,22 @@ module daq_sys(
 		.rst_n_i	(rst_n_i),
 		.clk_i		(clk_i),
 		.ft_clk_i	(ft_clk_i),
-		.led		(led[1:0]));	
+		.led		(led[1:0]));
+	
+	always_ff@(posedge adc_clk or negedge rst_n_i)
+	if(!rst_n_i)
+		led[2] <= 1'b0;
+	else if(fifo_full)
+		led[2] <= ~led[2];
+		
+	
+	
+	always_ff@(posedge adc_clk or negedge rst_n_i)
+	if(!rst_n_i)
+		fifo_test_data <= 'd0;
+//	else if(~fifo_full)
+	else
+		fifo_test_data <= fifo_test_data + 1'b1;
+		
 
 endmodule

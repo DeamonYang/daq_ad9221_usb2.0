@@ -16,11 +16,11 @@ module ft232h_send_data(
 	output	logic			ft_siwu_o,
 	
 	/*data_bus*/
-	input	logic[7:0]		fif_data,
+	input	logic[7:0]		fifo_data,
 	input	logic			fifo_empty
 	);
 
-	assign ft_adbus_o = fif_data;
+	assign ft_adbus_o = fifo_data;
 	
 	assign ft_siwu_o = 1'b1;
 	assign ft_usrst = 1'b1;

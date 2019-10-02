@@ -82,16 +82,9 @@ set_location_assignment PIN_101 -to ft_usrst
 set_location_assignment PIN_103 -to ft_pwrsav
 set_location_assignment PIN_127 -to ad_otr_i
 set_location_assignment PIN_1 -to ad_clk_o
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/bulinbulin_led.sv
-set_global_assignment -name SYSTEMVERILOG_FILE daq_sys.sv
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name CDF_FILE Chain2.cdf
 set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
-set_global_assignment -name QIP_FILE ip/usb_data_pll.qip
-set_global_assignment -name QIP_FILE ip/pll_adc.qip
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/ad9221.sv
-set_global_assignment -name QIP_FILE ip/async_fifo.qip
 set_location_assignment PIN_128 -to ad_db_i[0]
 set_location_assignment PIN_129 -to ad_db_i[1]
 set_location_assignment PIN_132 -to ad_db_i[2]
@@ -104,7 +97,6 @@ set_location_assignment PIN_141 -to ad_db_i[8]
 set_location_assignment PIN_142 -to ad_db_i[9]
 set_location_assignment PIN_143 -to ad_db_i[10]
 set_location_assignment PIN_144 -to ad_db_i[11]
-set_global_assignment -name SYSTEMVERILOG_FILE test_bench/fifo_test_tb.sv
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH fifo_test_tb -section_id eda_simulation
@@ -113,7 +105,6 @@ set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id fifo_test_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME fifo_test_tb -section_id fifo_test_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE test_bench/fifo_test_tb.sv -section_id fifo_test_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE ip/async_fifo.v -section_id fifo_test_tb
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/ft232h_test.sv
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -138,7 +129,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIP
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT trigger_in -to led[2] -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=1" -section_id auto_signaltap_0
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/ft232h_send_data.sv
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to ft_adbus_o[0] -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to ft_adbus_o[1] -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to ft_adbus_o[2] -section_id auto_signaltap_0
@@ -163,5 +153,65 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=49" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=11909" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=64646" -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE rtl/sdram/wrfifo.v
+set_global_assignment -name QIP_FILE rtl/sdram/wrfifo.qip
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_top.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_para.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_fifo_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_data.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_ctrl.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_controller.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/sdram_cmd.v
+set_global_assignment -name VERILOG_FILE rtl/sdram/rdfifo.v
+set_global_assignment -name QIP_FILE rtl/sdram/rdfifo.qip
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/bulinbulin_led.sv
+set_global_assignment -name SYSTEMVERILOG_FILE daq_sys.sv
+set_global_assignment -name CDF_FILE Chain2.cdf
+set_global_assignment -name QIP_FILE ip/usb_data_pll.qip
+set_global_assignment -name QIP_FILE ip/pll_adc.qip
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/ad9221.sv
+set_global_assignment -name QIP_FILE ip/async_fifo.qip
+set_global_assignment -name SYSTEMVERILOG_FILE test_bench/fifo_test_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/ft232h_test.sv
+set_global_assignment -name SYSTEMVERILOG_FILE rtl/ft232h_send_data.sv
+set_location_assignment PIN_52 -to sdram_clk
+set_location_assignment PIN_51 -to sdram_cke
+set_location_assignment PIN_74 -to sdram_cs_n
+set_location_assignment PIN_75 -to sdram_ras_n
+set_location_assignment PIN_76 -to sdram_cas_n
+set_location_assignment PIN_77 -to sdram_we_n
+set_location_assignment PIN_73 -to sdram_ba[0]
+set_location_assignment PIN_72 -to sdram_ba[1]
+set_location_assignment PIN_70 -to sdram_addr[0]
+set_location_assignment PIN_69 -to sdram_addr[1]
+set_location_assignment PIN_68 -to sdram_addr[2]
+set_location_assignment PIN_67 -to sdram_addr[3]
+set_location_assignment PIN_38 -to sdram_addr[4]
+set_location_assignment PIN_39 -to sdram_addr[5]
+set_location_assignment PIN_42 -to sdram_addr[6]
+set_location_assignment PIN_43 -to sdram_addr[7]
+set_location_assignment PIN_44 -to sdram_addr[8]
+set_location_assignment PIN_46 -to sdram_addr[9]
+set_location_assignment PIN_71 -to sdram_addr[10]
+set_location_assignment PIN_49 -to sdram_addr[11]
+set_location_assignment PIN_50 -to sdram_addr[12]
+set_location_assignment PIN_100 -to sdram_data[0]
+set_location_assignment PIN_99 -to sdram_data[1]
+set_location_assignment PIN_98 -to sdram_data[2]
+set_location_assignment PIN_87 -to sdram_data[3]
+set_location_assignment PIN_86 -to sdram_data[4]
+set_location_assignment PIN_85 -to sdram_data[5]
+set_location_assignment PIN_84 -to sdram_data[6]
+set_location_assignment PIN_83 -to sdram_data[7]
+set_location_assignment PIN_54 -to sdram_data[8]
+set_location_assignment PIN_55 -to sdram_data[9]
+set_location_assignment PIN_58 -to sdram_data[10]
+set_location_assignment PIN_59 -to sdram_data[11]
+set_location_assignment PIN_60 -to sdram_data[12]
+set_location_assignment PIN_64 -to sdram_data[13]
+set_location_assignment PIN_65 -to sdram_data[14]
+set_location_assignment PIN_66 -to sdram_data[15]
+set_location_assignment PIN_80 -to sdram_dqm[0]
+set_location_assignment PIN_53 -to sdram_dqm[1]
 set_global_assignment -name SLD_FILE "H:/FPGA/DAQ_FT232H_AD9221/EP4CE6_FT232H_AD9221/stp1_auto_stripped.stp"
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

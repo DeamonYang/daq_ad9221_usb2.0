@@ -35,6 +35,87 @@ ad_db_i[9]      ,PIN_142
 ad_db_i[10]     ,PIN_143
 ad_db_i[11]     ,PIN_144
 ad_clk_o        ,PIN_1
+sdram_clk		,PIN_52
+sdram_cke       ,PIN_51
+sdram_cs_n      ,PIN_74
+sdram_ras_n     ,PIN_75
+sdram_cas_n     ,PIN_76
+sdram_we_n      ,PIN_77
+sdram_ba[0]     ,PIN_73
+sdram_ba[1]     ,PIN_72
+sdram_addr[0]   ,PIN_70
+sdram_addr[1]   ,PIN_69
+sdram_addr[2]   ,PIN_68
+sdram_addr[3]   ,PIN_67
+sdram_addr[4]   ,PIN_38
+sdram_addr[5]   ,PIN_39
+sdram_addr[6]   ,PIN_42
+sdram_addr[7]   ,PIN_43
+sdram_addr[8]   ,PIN_44
+sdram_addr[9]   ,PIN_46
+sdram_addr[10]  ,PIN_71
+sdram_addr[11]  ,PIN_49
+sdram_addr[12]  ,PIN_50
+sdram_data[0]   ,PIN_100
+sdram_data[1]   ,PIN_99
+sdram_data[2]   ,PIN_98
+sdram_data[3]   ,PIN_87
+sdram_data[4]   ,PIN_86
+sdram_data[5]   ,PIN_85
+sdram_data[6]   ,PIN_84
+sdram_data[7]   ,PIN_83
+sdram_data[8]   ,PIN_54
+sdram_data[9]   ,PIN_55
+sdram_data[10]  ,PIN_58
+sdram_data[11]  ,PIN_59
+sdram_data[12]  ,PIN_60
+sdram_data[13]  ,PIN_64
+sdram_data[14]  ,PIN_65
+sdram_data[15]  ,PIN_66
+sdram_dqm[0]    ,PIN_80
+sdram_dqm[1]	,PIN_53
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 
 

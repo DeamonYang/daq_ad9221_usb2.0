@@ -39,11 +39,12 @@ module daq_sys(
 	logic	[11:0]	fifo_test_data;
 	logic	[7:0]	fifo_data;
 	
+	assign led[2] = fifo_full;
 	
 	ft232h_send_data ft232h_send_data_inst_u0(
 		.rst_n_i		(rst_n_i		),
 		.clk_i			(clk_i			),	
-		.ft_shift_clk	(ft_shift_clk	),//60MHz
+		.ft_shift_clk	(ft_clk_i	),//60MHz
 		.ft_rxf_i		(ft_rxf_i		),//When high, do not read data from the FIFO
 		.ft_txe_i		(ft_txe_i		),//When high, do not write data into the FIFO
 		.ft_adbus_o		(ft_adbus_o		),
@@ -57,12 +58,13 @@ module daq_sys(
 		.fifo_empty		(fifo_empty		) 
 	);
 	
-	
+	reg r_fifo_empty;
 	
 	async_fifo	async_fifo_inst (
-		//.data 		( {4'd0,ad_data}),
-		.data 		( {fifo_test_data[7:0],fifo_test_data[7:0]}),
-		.rdclk 		( ft_shift_clk 	),
+//		.data 		( {4'd0,ad_data}),
+		.data 		( {4'd0,12'h123}),
+//		.data 		( {fifo_test_data[7:0],fifo_test_data[7:0]}),
+		.rdclk 		( ft_clk_i 	),
 		.rdreq 		( (~ft_txe_i)&(~fifo_empty)),
 		.wrclk 		( adc_clk 		),
 		.wrreq 		( ~fifo_full	),
@@ -70,8 +72,9 @@ module daq_sys(
 		.rdempty 	( fifo_empty 	),
 		.wrfull 	( fifo_full 	)
 		);
+		
 	
-	ad9221(
+	ad9221 ad9221_u0(
 		.rst_n_i	(rst_n_i),
 		.clk_i		(adc_clk),
 		.ad_bus_i	(ad_db_i),
@@ -93,21 +96,5 @@ module daq_sys(
 		.clk_i		(clk_i),
 		.ft_clk_i	(ft_clk_i),
 		.led		(led[1:0]));
-	
-	always_ff@(posedge adc_clk or negedge rst_n_i)
-	if(!rst_n_i)
-		led[2] <= 1'b0;
-	else if(fifo_full)
-		led[2] <= ~led[2];
-		
-	
-	
-	always_ff@(posedge adc_clk or negedge rst_n_i)
-	if(!rst_n_i)
-		fifo_test_data <= 'd0;
-//	else if(~fifo_full)
-	else
-		fifo_test_data <= fifo_test_data + 1'b1;
-		
 
 endmodule

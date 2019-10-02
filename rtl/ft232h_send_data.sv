@@ -20,21 +20,30 @@ module ft232h_send_data(
 	input	logic			fifo_empty
 	);
 
+	logic	ft_wr;
+	logic	r_fifo_empty;
+	
 	assign ft_adbus_o = fifo_data;
 	
 	assign ft_siwu_o = 1'b1;
 	assign ft_usrst = 1'b1;
 	assign ft_pwrsav = 1'b1;
 	
+	assign ft_wr_o = ft_wr;
 	
 	always_ff@(posedge ft_shift_clk or negedge rst_n_i)
 	if(!rst_n_i)
-		ft_wr_o <= 1'b1;
-	else if((!ft_txe_i) & (!fifo_empty))
-		ft_wr_o <= 1'b0;
+		ft_wr <= 1'b1;
+	else if((!ft_txe_i) & (~fifo_empty))
+		ft_wr <= 1'b0;
 	else
-		ft_wr_o <= 1'b1;
+		ft_wr <= 1'b1;
 	
+	always_ff@(posedge ft_shift_clk or negedge rst_n_i)
+	if(!rst_n_i)
+		r_fifo_empty <= 1'b0;
+	else
+		r_fifo_empty <= fifo_empty;
 
 endmodule
 

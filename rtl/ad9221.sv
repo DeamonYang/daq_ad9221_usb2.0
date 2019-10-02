@@ -14,6 +14,17 @@ module ad9221(
 	if(!rst_n_i)
 		ad_data_o <= 12'd0;
 	else
-		ad_data_o <= 12'h123;//ad_bus_i;
+		ad_data_o <= {	ad_bus_i[0],
+						ad_bus_i[1],
+						ad_bus_i[2],
+						ad_bus_i[3],
+						ad_bus_i[4],
+						ad_bus_i[5],
+						ad_bus_i[6],
+						ad_bus_i[7],
+						ad_bus_i[8],
+						ad_bus_i[9],
+						ad_bus_i[10],
+						ad_bus_i[11]};
 
 endmodule

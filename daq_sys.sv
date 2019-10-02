@@ -61,8 +61,8 @@ module daq_sys(
 	reg r_fifo_empty;
 	
 	async_fifo	async_fifo_inst (
-//		.data 		( {4'd0,ad_data}),
-		.data 		( {4'd0,12'h123}),
+		.data 		( {4'd0,ad_data}),
+//		.data 		( {4'd0,12'h123}),
 //		.data 		( {fifo_test_data[7:0],fifo_test_data[7:0]}),
 		.rdclk 		( ft_clk_i 	),
 		.rdreq 		( (~ft_txe_i)&(~fifo_empty)),
